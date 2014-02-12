@@ -1,5 +1,13 @@
 Login::Application.routes.draw do
+  resources :user
+
   get "users/new"
+
+  match '/add', to: 'users#add', via: 'post'
+  match '/login', to: 'users#login', via: 'post'
+  match '/TESTAPI/unittest', to: 'users#unittest', via: 'post'
+  match '/TESTAPI/resetFixture', to: 'users#TESTAPI_resetFixture', via: 'post'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     ## The maximum length of the passwords
   @@MAX_PASSWORD_LENGTH = 128
 
+  def __init__()
+      self._reset()
+  end
+
   def self.add (user, password)
 
     if User.find_by_user(user) != nil
@@ -69,6 +73,10 @@ class User < ActiveRecord::Base
     data.save
     return data.count 
 
+  end
+
+  def TESTAPI_resetFixture()
+        self._reset ()
   end
 
 end
