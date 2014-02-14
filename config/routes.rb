@@ -2,6 +2,8 @@ Login::Application.routes.draw do
   resources :user
 
   get "users/new"
+  get "users/add"
+  get "users/login"
 
   match '/add', to: 'users#add', via: 'post'
   match '/login', to: 'users#login', via: 'post'
