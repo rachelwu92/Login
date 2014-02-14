@@ -1,5 +1,63 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  before { @user = User.new(name: "Example User", password: "pass") }
+
+  subject { @user }
+
+  it { should respond_to(:user) }
+  it { should respond_to(:password) }
+
+  it "should add User" do
+    @user.should eql(1)
+  end
 end
+=begin
+describe nameLength do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+
+
+describe duplicate_User do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+
+
+describe bad_password do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+
+describe reset do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+
+describe count_Exist do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+
+describe login do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+
+describe addUser do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+
+describe findByName do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+
+describe do
+  user = User.add(name: "Example User", password: "pass")
+  
+end
+=end
