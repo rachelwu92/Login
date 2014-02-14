@@ -1,14 +1,12 @@
 Login::Application.routes.draw do
   resources :user
+  resources :testapi
 
-  get "users/new"
-  get "users/add"
-  get "users/login"
 
-  match '/add', to: 'users#add', via: 'post'
-  match '/login', to: 'users#login', via: 'post'
-  match '/TESTAPI/unittest', to: 'users#unittest', via: 'post'
-  match '/TESTAPI/resetFixture', to: 'users#TESTAPI_resetFixture', via: 'post'
+  match '/users/add', to: 'users#add', via: 'post', :defaults => { :format => 'json' } 
+  match '/users/login', to: 'users#login', via: 'post', :defaults => { :format => 'json' } 
+  match '/TESTAPI/unitTests', to: 'users#TESTAPI_unitTests', via: 'post', :defaults => { :format => 'json' } 
+  match '/TESTAPI/resetFixture', to: 'users#TESTAPI_resetFixture', via: 'post', :defaults => { :format => 'json' } 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

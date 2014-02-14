@@ -22,18 +22,19 @@ class User < ActiveRecord::Base
     ## The maximum length of the passwords
   @@MAX_PASSWORD_LENGTH = 128
 
-  def __init__()
-      self._reset()
+  def __init__
   end
 
-  def self.add (user, password)
+  def self.add(user, password)
 
     if User.find_by_user(user) != nil
       return @@ERR_USER_EXISTS
     end
 
-    def self.valid_username(username)
-      if username != "" and username.length<=@@MAX_USERNAME_LENGTH
+    def self.valid_username(user)
+      if user == nil
+        return false
+      elsif user != "" and user.length<=@@MAX_USERNAME_LENGTH
         return true
       else
         return false
@@ -52,10 +53,12 @@ class User < ActiveRecord::Base
       return @@ERR_BAD_PASSWORD    
     end
 
-    data = User.new(user: user, password: password)
+    data = User.new(user: user, password: password, count: 0)
     data.save
     data.count = 1
     data.save
+
+    return @@SUCCESS
 
   end
 
@@ -71,12 +74,18 @@ class User < ActiveRecord::Base
     end
     data.count += 1
     data.save
-    return data.count 
+    return @@SUCCESS
 
   end
 
-  def TESTAPI_resetFixture()
-        self._reset ()
+  def self.TESTAPI_unitTests
+    return @@SUCCESS
+  end
+
+
+  def self.TESTAPI_resetFixture
+    User.delete_all
+    return @@SUCCESS
   end
 
 end
