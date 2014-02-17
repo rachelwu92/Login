@@ -27,14 +27,15 @@ class User < ActiveRecord::Base
 
   def self.add(user, password)
 
-    if User.find_by_user(user) != nil
+    if User.find_by_user(user).user != nil
+      puts User.find_by_user(user)
       return @@ERR_USER_EXISTS
     end
 
     def self.valid_username(user)
       if user == nil
-        return false
-      elsif user != "" and user.length<=@@MAX_USERNAME_LENGTH
+        return true
+      elsif user.to_s != "" and user.to_s.length <= @@MAX_USERNAME_LENGTH
         return true
       else
         return false
@@ -45,11 +46,11 @@ class User < ActiveRecord::Base
       return password.to_s.length <= @@MAX_PASSWORD_LENGTH
     end
 
-    if not self.valid_username(user)
+    if not valid_username(user)
       return @@ERR_BAD_USERNAME
     end
 
-    if not self.valid_password(password)
+    if not valid_password(password)
       return @@ERR_BAD_PASSWORD    
     end
 
@@ -63,12 +64,12 @@ class User < ActiveRecord::Base
   end
 
   def self.login(user, password)
-
-    if User.find_by_user(user) == nil
+    data = User.find_by_user(user)
+    
+    if data == nil
       return @@ERR_BAD_CREDENTIALS
     end
 
-    data = User.find_by_user(user)
     if data.password != password
       return @@ERR_BAD_CREDENTIALS
     end
@@ -78,7 +79,7 @@ class User < ActiveRecord::Base
 
   end
 
-  def self.TESTAPI_unitTest
+  def self.TESTAPI_unitTests
     return @@SUCCESS
   end
 

@@ -12,52 +12,36 @@ describe User do
   it "should add User" do
     @user.should eql(1)
   end
-end
+
+  it "should reset"
+    result = User.TESTAPI_resetFixture
+    resutl.should eql(1)
+  end
+
 =begin
-describe nameLength do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
-
-
-describe duplicate_User do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
-
-
-describe bad_password do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
-
-describe reset do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
-
-describe count_Exist do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
-
-describe login do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
-
-describe addUser do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
-
-describe findByName do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
-
-describe do
-  user = User.add(name: "Example User", password: "pass")
-  
-end
+  it "should have a good name length"
+    @user should be less than 128
+  end
 =end
+
+
+
+  describe "Home page" do
+
+    it "should have the content 'Sample App'" do
+      visit '/static_pages/home'
+      expect(page).to have_content('Sample App')
+    end
+
+    it "should have the base title" do
+      visit '/static_pages/home'
+      expect(page).to have_title("Ruby on Rails Tutorial Sample App")
+    end
+
+    it "should not have a custom page title" do
+      visit '/static_pages/home'
+      expect(page).not_to have_title('| Home')
+    end
+  end
+
+end

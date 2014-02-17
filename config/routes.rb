@@ -1,7 +1,9 @@
 Login::Application.routes.draw do
   resources :user
   resources :testapi
+  resources :users
 
+  root 'users#home'
 
   match '/users/add', to: 'users#add', via: 'post', :defaults => { :format => 'json' } 
   match '/users/login', to: 'users#login', via: 'post', :defaults => { :format => 'json' } 
