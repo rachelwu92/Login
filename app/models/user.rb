@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base	
 
+  attr_accessible :user
+
       ## The success return code
   @@SUCCESS =   1
 
@@ -26,9 +28,11 @@ class User < ActiveRecord::Base
   end
 
   def self.add(user, password)
+ 
+    userObj = User.find_by(user)
 
-    if User.find_by_user(user).user != nil
-      puts User.find_by_user(user)
+#    if userObj.user != nil
+    if userObj != nil and userObj.user != nil
       return @@ERR_USER_EXISTS
     end
 
@@ -54,9 +58,7 @@ class User < ActiveRecord::Base
       return @@ERR_BAD_PASSWORD    
     end
 
-    data = User.new(user: user, password: password, count: 0)
-    data.save
-    data.count = 1
+    data = User.new(user: user.to_s, password: password.to_s, count: 1)
     data.save
 
     return @@SUCCESS
@@ -66,7 +68,7 @@ class User < ActiveRecord::Base
   def self.login(user, password)
     data = User.find_by_user(user)
     
-    if data == nil
+    if data.user == nil
       return @@ERR_BAD_CREDENTIALS
     end
 

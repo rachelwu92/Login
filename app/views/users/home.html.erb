@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="client.css">
+<!--<link rel="stylesheet" type="text/css" href="client.css"> -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 <!-- This is all the page independent functions.  The ones which directly interact with the page are inlined below. -->
@@ -98,7 +98,7 @@ $('#logout-button').click(function() {
 
 </script>
 -->
-
+<body>
   <h4>Login Here</h4>
   <form action="/users/login" method="post">
     <label for="name">Username: </label>
@@ -117,15 +117,22 @@ $('#logout-button').click(function() {
     <input type="submit" id="add" value="Add User">
   </form>
 
-
-<body>
 <h4> Login Here</h4>
-<%= form_tag("/users/login", method: "get") do %>
+<%= form_tag("/users/login", method: "post") do %>
   <%= label(:q, "Username:") %>
   <%= text_field(:user, :user) %> <br/>
   <%= label(:p, "Password:") %>
   <%= password_field(:user, :password) %> <br/>
   <%= submit_tag("Login") %>
+<% end %>
+
+<h4>Add User Here</h4>
+<%= form_tag("/users/add", method: "post") do %>
+  <%= label(:q_add, "Username:") %>
+  <%= text_field(:user, :user) %> <br/>
+  <%= label(:p_add, "Password:") %>
+  <%= password_field(:user, :password) %> <br/>
+  <%= submit_tag("Add User") %>
 <% end %>
 
 </body>

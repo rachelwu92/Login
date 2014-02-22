@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   end
 
   def home
-    name = params[:user]
-    pass = params[:password]
+    name = params[:name_add]
+    pass = params[:p_add]
     @user = User.new(name, pass)
 =begin
     if params[:login]
@@ -46,8 +46,8 @@ class UsersController < ApplicationController
   end
 
   def add
-    name = params[:name_add]
-    pass = params[:p_add]
+    name = params[:user]
+    pass = params[:password]
     user = User.add(name,pass)
 #    inter = @user
 #    user = User.add(inter.user, inter.password)
